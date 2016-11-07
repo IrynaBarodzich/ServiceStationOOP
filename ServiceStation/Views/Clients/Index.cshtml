@@ -1,0 +1,32 @@
+﻿@model ServiceStation.Models.Clients
+@{
+    ViewBag.Title = "Clients";
+}
+ <div>
+
+        <h2>Client Search</h2>
+  @using (Html.BeginForm("List", "Clients") )
+{
+   
+<div class="editor-label"> 
+    First Name: 
+</div>     
+       @Html.HiddenFor(model => model.ClientsID) 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.FirstName) 
+    @Html.ValidationMessageFor(model => model.FirstName) 
+</div>
+<div class="editor-label"> 
+    Last Name:
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.LastName) 
+    @Html.ValidationMessageFor(model => model.LastName) 
+</div>
+
+        <div><input type="submit" value="Search" /></div>
+}
+
+    </div>
+ <div class="links">@Html.ActionLink("Add New Client", "Create")</div> 
+<div class="links">@Html.ActionLink("Back to Home Page", "Index", "Home")</div>

@@ -1,0 +1,94 @@
+﻿@model ServiceStation.Models.Clients
+@{
+    ViewBag.Title = "Client Information";
+}
+<h2>Client Information</h2> 
+
+
+
+<table>
+<tr> 
+    <th colspan="2">
+   @Html.DisplayFor(model => model.FirstName)   @Html.DisplayFor(model => model.LastName) 
+   </th>
+</tr>
+<tr> 
+   <td>Date of Birth:</td>
+    <td>@Html.DisplayFor(model => model.BirthDate)</td>
+</tr>
+ 
+<tr> 
+   <td>Address:</td>
+    <td>@Html.DisplayFor(model => model.Address)</td>
+</tr>
+
+<tr> 
+   <td>Phone:</td>
+    <td>@Html.DisplayFor(model => model.Phone)</td>
+</tr>
+
+    <tr> 
+   <td>Email:</td>
+    <td>@Html.DisplayFor(model => model.Email)</td>
+</tr>
+
+    </table>
+
+
+
+@if(Model.Cars.Any())
+{
+    <div class="text text2">Cars</div>
+
+    <table> 
+        <tr>  
+             
+            <th>Make</th> 
+            <th>Model</th> 
+            <th>VIN</th>
+            <th>Year</th>
+            <th></th>
+        </tr> 
+        @foreach (var item in Model.Cars) 
+        { 
+            <tr> 
+                      
+                <td> 
+                    @Html.DisplayFor(modelItem => item.Make) 
+                </td> 
+                <td> 
+                    @Html.DisplayFor(modelItem => item.Model) 
+                </td> 
+                 <td> 
+                    @Html.DisplayFor(modelItem => item.VIN) 
+                </td>
+                  <td> 
+                    @Html.DisplayFor(modelItem => item.Year) 
+                </td>
+                  <td class="nowrap"> 
+
+            @Html.ActionLink("Edit", "Edit", "Cars", new { id=item.CarsID }, null) | 
+            @Html.ActionLink("Details", "Details", "Cars", new { id=item.CarsID }, null) |
+
+            @if(item.Orders.Count==0)
+            {
+              @Html.ActionLink("Delete", "Delete", "Cars", new { id=item.CarsID }, null)   
+            }
+                            else
+            {
+                <span class="inactive">Delete</span>
+            }
+        </td> 
+            </tr> 
+        } 
+    </table> 
+
+}
+else
+{
+    <div class="text">No cars are related to this client.</div>
+}
+
+  <div class="links">@Html.ActionLink("Add New Car", "Create", "Cars", new { id=Model.ClientsID }, null)</div>
+     
+<div class="links">@Html.ActionLink("Back to Clients List", "List", "Clients", new { firstName=Model.FirstName, lastName=Model.LastName }, null)</div>

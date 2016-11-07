@@ -1,0 +1,41 @@
+﻿@model ServiceStation.Models.Cars
+@{
+    ViewBag.Title = "Delete Car Information";
+}
+
+<h2>Delete</h2>
+
+<div class="text">Are you sure you want to delete this car?</div>
+
+<table>
+<tr> 
+    <th colspan="2">
+   @Html.DisplayFor(model => model.Make)   @Html.DisplayFor(model => model.Model) 
+   </th>
+</tr>
+<tr> 
+   <td>Year:</td>
+    <td>@Html.DisplayFor(model => model.Year)</td>
+</tr>
+ 
+<tr> 
+   <td>VIN:</td>
+    <td>@Html.DisplayFor(model => model.VIN)</td>
+</tr>
+
+    </table>
+    
+
+
+    @using (Html.BeginForm()) {
+    
+
+        <p>
+            <input type="submit" value="Delete"/>
+        </p>
+    }
+
+
+<div class="links">@Html.ActionLink("Back to Client Information", "Details", "Clients", new { id=Model.ClientsID }, null)</div>
+
+

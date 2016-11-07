@@ -1,0 +1,50 @@
+﻿@model ServiceStation.Models.Cars
+@{
+    ViewBag.Title = "Add Car Information";
+    TempData.Keep("id");
+}
+
+        @using(Html.BeginForm("Create", "Cars"))
+        {
+            @Html.AntiForgeryToken();
+     
+<h2>Create Car</h2> 
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.Make) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Make) 
+    @Html.ValidationMessageFor(model => model.Make) 
+</div>
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.Model) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Model) 
+    @Html.ValidationMessageFor(model => model.Model) 
+</div>
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.Year) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Year) 
+    @Html.ValidationMessageFor(model => model.Year) 
+</div>
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.VIN) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.VIN) 
+    @Html.ValidationMessageFor(model => model.VIN) 
+</div>
+            
+    <div class="editor-field"> 
+    @Html.Hidden("ClientsID", @TempData["id"])
+</div>
+
+ 
+<p><input type="submit" value="Create" /></p>       
+        }
+
+    <div class="links">@Html.ActionLink("Back to Client Information", "Details", "Clients", new { id=@TempData["id"] }, null)</div>
+

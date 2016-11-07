@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ServiceStation.Models.Clients> 
+@{
+    ViewBag.Title = "Clients List";
+}
+ 
+<h2>Clients Page</h2> 
+ 
+
+
+
+
+@if(Model.Any())
+{
+<table> 
+    <tr> 
+
+        <th>First Name</th> 
+         <th>Last Name</th> 
+        <th>Date of Birth</th> 
+       <th>Address</th> 
+        <th>Phone</th>
+        <th>Email</th> 
+                <th></th> 
+    </tr> 
+ 
+@foreach (var item in Model) { 
+    <tr> 
+         <td> 
+         
+            @Html.DisplayFor(modelItem => item.FirstName) 
+        </td>
+        <td> 
+            @Html.DisplayFor(modelItem => item.LastName) 
+        </td> 
+ 
+        <td> 
+            @Html.DisplayFor(modelItem => item.BirthDate) 
+        </td> 
+         <td> 
+            @Html.DisplayFor(modelItem => item.Address) 
+        </td> 
+          <td> 
+            @Html.DisplayFor(modelItem => item.Phone) 
+        </td>
+         <td> 
+            @Html.DisplayFor(modelItem => item.Email) 
+        </td>
+          <td class="nowrap"> 
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClientsID }) | 
+            @Html.ActionLink("Details", "Details", new { id=item.ClientsID }) 
+        </td>
+    </tr> 
+} 
+    
+    
+ 
+</table>
+}
+else
+{
+    <div class="text">There are no results that match your search</div>
+}
+
+ <div class="links">@Html.ActionLink("Add New Client", "Create")</div> 
+<div class="links">@Html.ActionLink("Back to Clients Page", "Index", "Clients")</div>
+   

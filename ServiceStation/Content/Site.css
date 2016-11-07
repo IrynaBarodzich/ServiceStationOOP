@@ -1,0 +1,261 @@
+﻿html {
+    background-color: #e1e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e1e0e0;
+    color: #666666;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, footer {
+    display: block;
+}
+
+
+
+
+h1 {
+    color: #3399FF;
+    font-size: 1.7em;
+    margin-bottom:0;
+}
+
+h2 {
+    color: #666;
+    font-size: 1.3em;
+    margin-bottom:0;
+    padding-bottom:0.5em;
+
+}
+
+
+/*  layout
+----------------------------------------------------------*/
+
+
+#body {
+    border-top: solid 10px 	#3399FF;
+    width:60%;
+    background-color: #ffffff;
+    margin: auto;
+    padding:10px 50px 40px;
+    min-width:750px;
+}
+
+footer {
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+}
+#footer
+    {
+    padding-top:20px;
+    width:60%;
+    margin: auto;
+    }
+
+nav
+{
+    border-bottom:1px solid #ccc;
+}
+
+
+/* menu
+----------------------------------------------------------*/
+ul#menu {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 10px 0;
+    padding: 0;
+    text-align: left;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-right:30px;
+
+    }
+
+        ul#menu li a {
+            background: none;
+            color: #666;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            color: #333;
+            text-decoration: none;
+        }
+
+
+/* page elements */
+
+
+.inactive
+ {
+    color: #ccc;
+ }
+
+.links
+{
+    font-size: 1.2em;
+    padding-top:0.6em;
+}
+
+.text
+{
+    padding:0.2em 0;
+    font-size: 1.2em;
+}
+
+.text2
+{
+    font-weight:600;
+}
+
+        /* tables -*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0.75em 0;
+    border: 0 none;
+}
+
+th {
+    font-size: 1em;
+    text-align: left;
+    border: none 0px;
+    padding: 0.3em 1em 0.3em 0;
+    border-bottom:1px solid #ccc;
+}
+
+
+
+    td a:link, td a:visited, td a:active,  .links a:link, .links  a:visited, .links  a:active {
+        color: #3399FF;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0;
+    }
+
+    td a:hover, .links a:hover {
+        color: #333;
+    }
+
+
+td {
+    padding: 0.3em 1em 0.3em 0;
+    border: 0 none;
+}
+.nowrap
+{
+    white-space:nowrap;
+}
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+.editor-label {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+
+
+input, select {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+
+    input:focus {
+        border: 1px solid #7ac0da;
+    }
+
+
+
+    input[type="submit"],
+    input[type="button"],
+    button
+    {
+        background-color: #ccc;
+        border: 1px solid #999;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;
+        color: #666;
+    }
+
+    input[type="submit"]:hover,
+    input[type="button"]:hover,
+    button:hover {
+        background-color: #aaa;
+        border: 1px solid #666;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;
+        color:#333;
+    }
+
+    /* styles for validation helpers */
+.field-validation-error {
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+
+
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+

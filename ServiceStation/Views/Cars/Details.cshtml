@@ -1,0 +1,77 @@
+﻿@model ServiceStation.Models.Cars
+@{
+    ViewBag.Title = "Car Information";
+}
+
+ 
+
+<table>
+<tr> 
+    <th colspan="2">
+   @Html.DisplayFor(model => model.Make)   @Html.DisplayFor(model => model.Model) 
+   </th>
+</tr>
+<tr> 
+   <td>Year:</td>
+    <td>@Html.DisplayFor(model => model.Year)</td>
+</tr>
+ 
+<tr> 
+   <td>VIN:</td>
+    <td>@Html.DisplayFor(model => model.VIN)</td>
+</tr>
+
+    </table>
+
+
+
+ <div class="text text2">Orders</div>
+ 
+<div class="display-field"> 
+         @if(Model.Orders.Any())
+{
+    <table> 
+        <tr>  
+            <th>Date</th>
+            <th>Amount</th> 
+            <th>Status</th> 
+            <th></th>
+
+        </tr> 
+
+        @foreach (var item in Model.Orders) 
+        { 
+            <tr> 
+                <td> 
+                    @Html.DisplayFor(modelItem => item.Date) 
+                </td>
+                <td> 
+                    $@Html.DisplayFor(modelItem => item.Amount) 
+                </td> 
+                <td> 
+                    @Html.DisplayFor(modelItem => item.Status) 
+                </td> 
+
+
+                 <td class="nowrap"> 
+            @Html.ActionLink("Edit", "Edit", "Orders", new { id=item.OrdersID }, null) | 
+            @Html.ActionLink("Delete", "Delete", "Orders", new { id=item.OrdersID }, null) 
+
+        </td> 
+                
+            </tr> 
+        }
+        
+            </table> 
+     }
+
+
+    else   
+     {
+        <div class="text">No orders are related to this car. </div>
+
+        }
+
+</div>
+<div class="links">@Html.ActionLink("Register New Order", "Create", "Orders", new { id=Model.CarsID }, null)</div>
+<div class="links">@Html.ActionLink("Back to Client Information", "Details", "Clients", new { id=Model.ClientsID }, null)</div>

@@ -1,0 +1,44 @@
+﻿@model ServiceStation.Models.Orders
+@{
+    ViewBag.Title = "Delete Order";
+}
+
+<h2>Delete Order</h2>
+
+<div>Are you sure you want to delete this order?</div>
+
+<table>
+<tr> 
+
+</tr>
+<tr> 
+   <td>Year:</td>
+    <td>@Html.DisplayFor(model => model.Date)</td>
+</tr>
+ 
+<tr> 
+   <td>VIN:</td>
+    <td>$@Html.DisplayFor(model => model.Amount)</td>
+</tr>
+    <tr> 
+   <td>Status:</td>
+    <td>@Html.DisplayFor(model => model.Status)</td>
+</tr>
+
+    </table>
+
+
+
+
+    @using (Html.BeginForm()) {
+    
+
+        
+            <p><input type="submit" value="Delete"/></p>
+     
+    }
+
+
+<div class="links">@Html.ActionLink("Back to Car Information", "Details", "Cars", new { id=Model.CarsID }, null)</div>
+
+

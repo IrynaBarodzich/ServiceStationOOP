@@ -1,0 +1,57 @@
+﻿@model ServiceStation.Models.Clients
+@{
+    ViewBag.Title = "Add New Client";
+}
+
+        @using(Html.BeginForm("Create", "Clients"))
+        {
+          
+<h2>Add New Client</h2> 
+<div class="editor-label"> 
+    First Name: 
+</div>  
+
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.FirstName) 
+    @Html.ValidationMessageFor(model => model.FirstName) 
+</div>
+<div class="editor-label"> 
+    Last Name: 
+</div>   
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.LastName) 
+    @Html.ValidationMessageFor(model => model.LastName) 
+</div>
+<div class="editor-label"> 
+    Date of Birth:
+</div>
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.BirthDate) 
+    @Html.ValidationMessageFor(model => model.BirthDate) 
+</div>
+<div class="editor-label"> 
+    Address:
+</div>
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Address) 
+    @Html.ValidationMessageFor(model => model.Address) 
+</div>
+<div class="editor-label"> 
+    Phone:
+</div>
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Phone) 
+    @Html.ValidationMessageFor(model => model.Phone) 
+</div>
+<div class="editor-label"> 
+    Email:
+</div>
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Email) 
+    @Html.ValidationMessageFor(model => model.Email) 
+</div>
+            
+<p><input type="submit" value="Create" /></p>
+        }
+
+<div class="links">@Html.ActionLink("Back to Clients Page", "Index", "Clients")</div>

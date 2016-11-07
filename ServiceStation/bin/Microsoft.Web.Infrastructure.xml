@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Web.Infrastructure</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Web.Infrastructure.HttpContextHelper">
+      <summary>Содержит методы для выполнения действий-делегатов в контексте null.</summary>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.HttpContextHelper.ExecuteInNullContext(System.Action)">
+      <summary>Устанавливает контекст HTTP как null, выполняет указанное действие-делегат, а затем восстанавливает предыдущий контекст HTTP.</summary>
+      <param name="action">Действие-делегат.</param>
+    </member>
+    <member name="T:Microsoft.Web.Infrastructure.InfrastructureHelper">
+      <summary>Предоставляет вспомогательные методы для вызовов методов инфраструктуры.</summary>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.InfrastructureHelper.IsCodeDomDefinedExtension(System.String)">
+      <summary>Определяет вспомогательный метод, используемый для вызова метода <see cref="M:System.CodeDom.Compiler.CodeDomProvider.IsDefinedExtension" /> из частично доверенного приложения.</summary>
+      <returns>Значение true, если реализация <see cref="T:System.CodeDom.Compiler.CodeDomProvider" /> настроена для указанного расширения имени файла; в противном случае false.</returns>
+      <param name="extension">Расширение имени файла.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="extension" /> равен null.</exception>
+      <exception cref="T:System.Security.SecurityException">У вызывающего кода отсутствуют необходимые разрешения.</exception>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.InfrastructureHelper.UnloadAppDomain">
+      <summary>Определяет вспомогательный метод, используемый для вызова метода <see cref="M:System.Web.HttpRuntime.UnloadAppDomain" /> из частично доверенного приложения.</summary>
+    </member>
+    <member name="T:Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility">
+      <summary>Определяет класс, который предоставляет метод для динамической регистрации модулей.</summary>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(System.Type)">
+      <summary>Динамически регистрирует модуль <see cref="T:System.Web.IHttpModule" />.</summary>
+      <param name="moduleType">Тип регистрируемого модуля.</param>
+    </member>
+    <member name="T:Microsoft.Web.Infrastructure.DynamicValidationHelper.ValidationUtility">
+      <summary>Обеспечивает вспомогательные методы для динамической проверки запросов.</summary>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.DynamicValidationHelper.ValidationUtility.EnableDynamicValidation(System.Web.HttpContext)">
+      <summary>Обеспечивает динамическую проверку запроса для указанного контекста HTTP.</summary>
+      <param name="context">Контекст HTTP.</param>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.DynamicValidationHelper.ValidationUtility.GetUnvalidatedCollections(System.Web.HttpContext,System.Func`1@,System.Void)">
+      <summary>Получает делегаты для извлечения коллекций непроверенных форм и непроверенных запросов.</summary>
+      <param name="context">Контекст HTTP.</param>
+      <param name="formGetter">При возврате из метода содержит делегат, который возвращает коллекции пар "имя-значение" из формы в контексте HTTP. Этот параметр передается неинициализированным.</param>
+      <param name="queryStringGetter">При возврате из метода содержит делегат, который возвращает коллекции пар "имя-значение" из строки запроса в контексте HTTP. Этот параметр передается неинициализированным.</param>
+    </member>
+    <member name="M:Microsoft.Web.Infrastructure.DynamicValidationHelper.ValidationUtility.IsValidationEnabled(System.Web.HttpContext)">
+      <summary>Возвращает значение, которые указывает, включена ли динамическая проверка запросов для этого контекста HTTP.</summary>
+      <returns>Значение true, если динамическая проверка запросов включена для данного контекста HTTP; в противном случае — значение false.</returns>
+      <param name="context">Контекст HTTP.</param>
+    </member>
+  </members>
+</doc>

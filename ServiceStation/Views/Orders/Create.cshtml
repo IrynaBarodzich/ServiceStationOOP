@@ -1,0 +1,42 @@
+﻿@model ServiceStation.Models.Orders
+@{
+    ViewBag.Title = "Add New Order";
+    TempData.Keep("id");
+}
+
+        @using(Html.BeginForm("Create", "Orders"))
+        {
+            @Html.AntiForgeryToken();
+<h2>Add New Order</h2> 
+            
+   <div class="editor-label"> 
+    @Html.LabelFor(model => model.Date) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Date) 
+    @Html.ValidationMessageFor(model => model.Date) 
+</div>      
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.Amount) 
+</div> 
+<div class="editor-field"> 
+    @Html.EditorFor(model => model.Amount) 
+    @Html.ValidationMessageFor(model => model.Amount) 
+</div>
+<div class="editor-label"> 
+    @Html.LabelFor(model => model.Status) 
+</div> 
+<div class="editor-field"> 
+    @Html.DropDownList("Status", new SelectList(new string[] {"", "In Progress", "Completed", "Cancelled" }))
+    @Html.ValidationMessageFor(model => model.Status)
+ 
+</div>
+
+   <div class="editor-field"> 
+    @Html.Hidden("CarsID", @TempData["id"])
+</div>
+
+<p><input type="submit" value="Create" /></p>
+        }
+
+<div class="links">@Html.ActionLink("Back to Car Information", "Details", "Cars", new { id=@TempData["id"] }, null)</div>
