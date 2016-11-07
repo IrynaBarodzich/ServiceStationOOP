@@ -1,4 +1,4 @@
-﻿@model ServiceStation.Models.Clients
+﻿@model ServiceStation.ViewModels.ClientsViewModel
 @{
     ViewBag.Title = "Add New Client";
 }
@@ -10,7 +10,7 @@
 <div class="editor-label"> 
     First Name: 
 </div>  
-
+           
 <div class="editor-field"> 
     @Html.EditorFor(model => model.FirstName) 
     @Html.ValidationMessageFor(model => model.FirstName) 

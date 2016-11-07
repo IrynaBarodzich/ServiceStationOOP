@@ -160,7 +160,10 @@
       <DependentUpon>201611071816378_AfterAddingViewModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Profiles\CarsMapping.cs" />
     <Compile Include="Profiles\ClientsMapping.cs" />
+    <Compile Include="Profiles\ClientsViewMapping.cs" />
+    <Compile Include="Profiles\OrdersMapping.cs" />
     <Compile Include="Repositories\ICarsRepository.cs" />
     <Compile Include="Repositories\IClientsRepository.cs" />
     <Compile Include="Repositories\IOrdersRepository.cs" />

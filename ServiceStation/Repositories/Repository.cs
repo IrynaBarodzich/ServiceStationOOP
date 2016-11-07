@@ -53,7 +53,7 @@ namespace ServiceStation.Repositories
         {
             
 
-            _dbSet.Attach(item);
+     //       _dbSet.Attach(item);
             _db.Entry(item).State = EntityState.Modified;
 
 

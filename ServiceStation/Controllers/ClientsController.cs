@@ -68,17 +68,19 @@ namespace ServiceStation.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(_repo.Get(id));
+            var model = Mapper.Map<Clients, ClientsViewModel>(_repo.Get(id));
+            return View(model);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
 
-            Clients client = _repo.Get(id);
-            TempData["firstName"] = client.FirstName;
-            TempData["lastName"] = client.LastName;
-            return View(client);
+          //  Clients client = _repo.Get(id);
+            var model = Mapper.Map<Clients, ClientsViewModel>(_repo.Get(id));
+            TempData["firstName"] = model.FirstName;
+            TempData["lastName"] = model.LastName;
+            return View(model);
         }
 
         public ViewResult Create()
@@ -89,44 +91,42 @@ namespace ServiceStation.Controllers
 
 
         [HttpPost]
-        public ActionResult Edit(Clients client)
+        public ActionResult Edit(ClientsViewModel model)
 
-        {
-            var _client = _repo.Get(client.ClientsID);
-                        if (TryUpdateModel(_client))
-                        {
-                           
-                            try
-                            {
-                                if (ModelState.IsValid)
-                                {
-                                    _repo.Update(_client);
-                                    _unitOfWork.Commit();
-                                    return RedirectToAction("Details/" + _client.ClientsID);
-                                }
-                            }
-                            catch (DataException)
-                            {
-                                //Log the error (add a variable name after DataException) 
-                                throw;
-                            }
-                        }
-            return View(client);
-        }
-
-     
-
-        [HttpPost]
-        public ActionResult Create(Clients client)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-            //        Mapper.Initialize(cfg => cfg.CreateMap<Clients, CreateClient>());
-                    // сопоставление
-            //        var clients =
-             //           Mapper.Map<IEnumerable<Clients>, List<CreateClient>>(_repo.GetList());
+                   var client = _repo.Get(model.ClientsID);
+                   Mapper.Map(model, client);
+
+                    _repo.Update(client);
+                    _unitOfWork.Commit();
+                    return RedirectToAction("Details/" + model.ClientsID);
+                }
+            }
+            catch (DataException)
+            {
+                //Log the error (add a variable name after DataException) 
+                //  ModelState.AddModelError("", "Unable to save changes.");
+                //  return RedirectToAction("Details/" + client.ClientsID);
+            }
+            return View(model);
+        }
+
+     
+
+        [HttpPost]
+        public ActionResult Create(ClientsViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                   var client = Mapper.Map<ClientsViewModel, Clients>(model);
+
                     _repo.Create(client);
                     _unitOfWork.Commit();
                     return RedirectToAction("Details/" + client.ClientsID, "Clients");
@@ -137,7 +137,7 @@ namespace ServiceStation.Controllers
                 //Log the error (add a variable name after DataException) 
                 ModelState.AddModelError("", "Unable to save changes.");
             }
-            return View(client);
+            return View();
         }
 
         /*    protected override void Dispose(bool disposing)

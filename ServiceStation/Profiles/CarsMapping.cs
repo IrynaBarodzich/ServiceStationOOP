@@ -9,12 +9,14 @@ using ServiceStation.ViewModels;
 
 namespace ServiceStation.Profiles
 {
-    public class ClientsMapping : Profile
+    public class CarsMapping : Profile
     {
         //  private readonly IMapperConfiguration MappingConfiguration; 
         protected override void Configure()
         {
-            Mapper.CreateMap<Clients, ClientsViewModel>();
+
+            Mapper.CreateMap<Cars, CarsViewModel>();
+            Mapper.CreateMap<CarsViewModel, Cars>();
         }
     }
 }
