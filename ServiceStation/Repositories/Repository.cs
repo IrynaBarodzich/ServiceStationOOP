@@ -52,10 +52,10 @@ namespace ServiceStation.Repositories
         public virtual void Update(T item)
         {
             
-    //        TryUpdateModel(item);
-   //         _dbSet.Attach(item);
+
+            _dbSet.Attach(item);
             _db.Entry(item).State = EntityState.Modified;
-  //          return item;
+
 
         }
 

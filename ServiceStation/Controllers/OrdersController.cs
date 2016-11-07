@@ -18,7 +18,7 @@ namespace ServiceStation.Controllers
 
         Repository<Orders, int> _repo;
 
-        ServiceContext db = new ServiceContext();
+     //   ServiceContext db = new ServiceContext();
 
      /*   public OrdersController()
         {
@@ -29,8 +29,8 @@ namespace ServiceStation.Controllers
 
            public OrdersController(IUnitOfWork unitOfWork,Repository<Orders,int> repo)
            {
-               _unitOfWork = new UnitOfWork(db);
-               _repo = new Repository<Orders, int>(db);
+               _unitOfWork = unitOfWork;
+               _repo = repo;
            }
 
 
@@ -63,19 +63,24 @@ namespace ServiceStation.Controllers
         [HttpPost]
         public ActionResult Edit(Orders order)
         {
-            try
+            var _order = _repo.Get(order.OrdersID);
+            if (TryUpdateModel(_order))
             {
-                if (ModelState.IsValid)
+
+                try
                 {
-                    _repo.Update(order);
-                    _unitOfWork.Commit();
-                    return RedirectToAction("Details/" + order.CarsID, "Cars");
+                    if (ModelState.IsValid)
+                    {
+                        _repo.Update(_order);
+                        _unitOfWork.Commit();
+                        return RedirectToAction("Details/" + _order.CarsID, "Cars");
+                    }
                 }
-            }
-            catch (DataException)
-            {
-                //Log the error (add a variable name after DataException) 
-                throw;
+                catch (DataException)
+                {
+                    //Log the error (add a variable name after DataException) 
+                    throw;
+                }
             }
             return View(order);
         }

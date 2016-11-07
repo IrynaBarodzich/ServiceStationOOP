@@ -9,7 +9,8 @@ namespace ServiceStation.ViewModels
 {
     public class ClientsViewModel
     {
-
+        [Required]
+        public int ClientsID { get; set; }
         [Required(ErrorMessage = "Enter Last Name")]
         [StringLength(50, ErrorMessage = "Last Name must be shorter than 50 characters")]
         public string LastName { get; set; }

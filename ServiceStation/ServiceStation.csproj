@@ -154,11 +154,12 @@
     <Compile Include="Infrastructure\AutomapperExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapperNinjectModule.cs" />
     <Compile Include="Migrations\201609112209222_InitialCreate.cs" />
-    <Compile Include="Migrations\201609112209222_InitialCreate.Designer.cs">
-      <DependentUpon>201609112209222_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201609112209222_InitialCreate.Designer.cs" />
+    <Compile Include="Migrations\201611071816378_AfterAddingViewModels.cs" />
+    <Compile Include="Migrations\201611071816378_AfterAddingViewModels.Designer.cs">
+      <DependentUpon>201611071816378_AfterAddingViewModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\CreateClient.cs" />
     <Compile Include="Profiles\ClientsMapping.cs" />
     <Compile Include="Repositories\ICarsRepository.cs" />
     <Compile Include="Repositories\IClientsRepository.cs" />
@@ -182,7 +183,9 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\NinjectDependencyScope.cs" />
     <Compile Include="Infrastructure\NinjectRegistrations.cs" />
+    <Compile Include="ViewModels\CarsViewModel.cs" />
     <Compile Include="ViewModels\ClientsViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -279,8 +282,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609112209222_InitialCreate.resx">
-      <DependentUpon>201609112209222_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609112209222_InitialCreate.resx" />
+    <EmbeddedResource Include="Migrations\201611071816378_AfterAddingViewModels.resx">
+      <DependentUpon>201611071816378_AfterAddingViewModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

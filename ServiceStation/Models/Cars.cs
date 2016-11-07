@@ -9,18 +9,18 @@ namespace ServiceStation.Models
 {
     public class Cars
     {
+        [Required]
         public int CarsID { get; set; }
-        [Required(ErrorMessage = "Enter Make")]
-        [StringLength(50, ErrorMessage = "Make must be shorter than 50 characters")]
+        [Required]
+        [StringLength(50)]
         public string Make { get; set; }
-        [Required(ErrorMessage = "Enter Model")]
-        [StringLength(50, ErrorMessage = "Model must be shorter than 50 characters")]
+        [Required]
+        [StringLength(50)]
         public string Model { get; set; }
-        [Required(ErrorMessage = "Enter Year")]
-        [RangeUntilCurrentYear(1900, ErrorMessage = "Enter a valid year")]
+        [Required]
         public int Year { get; set; }
-        [Required(ErrorMessage = "Enter VIN")]
-       [StringLength(17, MinimumLength= 11, ErrorMessage = "Enter a valid VIN")]
+        [Required]
+        [StringLength(50)]
         public string VIN { get; set; }
         public int ClientsID { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }

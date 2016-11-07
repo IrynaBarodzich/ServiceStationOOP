@@ -60,8 +60,6 @@ D:\Intetics\MVC\ServiceStation\ServiceStation\bin\System.Web.Razor.xml
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\System.Web.WebPages.xml
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\System.Web.WebPages.Deployment.xml
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\System.Web.WebPages.Razor.xml
-D:\Intetics\MVC\ServiceStation\ServiceStation\bin\ru\EntityFramework.resources.dll
-D:\Intetics\MVC\ServiceStation\ServiceStation\bin\ru\EntityFramework.SqlServer.resources.dll
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\ru\System.Web.Helpers.resources.dll
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\ru\System.Web.Mvc.resources.dll
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\ru\System.Web.Optimization.resources.dll
@@ -75,8 +73,6 @@ D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.pdb
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\AutoMapper.xml
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\Autofac.xml
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\Autofac.Integration.Mvc.xml
-D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.InitialCreate.resources
-D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.csproj.GenerateResource.Cache
 D:\Intetics\MVC\ServiceStation03.11.2016\ServiceStation\bin\ServiceStation.dll
 D:\Intetics\MVC\ServiceStation03.11.2016\ServiceStation\bin\ServiceStation.pdb
 D:\Intetics\MVC\ServiceStation03.11.2016\ServiceStation\bin\Microsoft.Web.Infrastructure.dll
@@ -152,3 +148,8 @@ D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceSt
 D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceStation.csproj.GenerateResource.Cache
 D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceStation.dll
 D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceStation.pdb
+D:\Intetics\MVC\ServiceStation\ServiceStation\bin\EntityFramework.dll
+D:\Intetics\MVC\ServiceStation\ServiceStation\bin\EntityFramework.SqlServer.dll
+D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.201609112209222_InitialCreate.resources
+D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.csproj.GenerateResource.Cache
+D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.AfterAddingViewModels.resources

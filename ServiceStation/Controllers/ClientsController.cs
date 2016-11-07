@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Entity;
 using AutoMapper;
 using ServiceStation.Repositories;
+using ServiceStation.ViewModels;
 
 
 
@@ -24,7 +25,7 @@ namespace ServiceStation.Controllers
 
              }*/
 
-        ServiceContext db = new ServiceContext();
+  //      ServiceContext db = new ServiceContext();
 
         IUnitOfWork _unitOfWork;
 
@@ -33,10 +34,10 @@ namespace ServiceStation.Controllers
 
        public ClientsController(UnitOfWork unitOfWork, IRepository<Clients, int> repo)
         {
-    //        _unitOfWork = unitOfWork;
-    //        _repo = repo;
-            _unitOfWork = new UnitOfWork(db);
-            _repo = new Repository<Clients, int>(db);
+            _unitOfWork = unitOfWork;
+            _repo = repo;
+    //        _unitOfWork = new UnitOfWork(db);
+    //        _repo = new Repository<Clients, int>(db);
         }
 
 
@@ -53,10 +54,14 @@ namespace ServiceStation.Controllers
         {
 
 
-            var clients = _repo.GetList()
+   /*         var clients = _repo.GetList()
                  .Where(c => c.FirstName == firstName)
-                 .Where(c => c.LastName == lastName);
-            return View(clients.ToList());
+                 .Where(c => c.LastName == lastName);*/
+            var clients =
+    Mapper.Map<IEnumerable<Clients>, List<ClientsViewModel>>(_repo.GetList()
+    .Where(c => c.FirstName == firstName)
+    .Where(c => c.LastName == lastName));
+            return View(clients);
         }
 
 
@@ -87,20 +92,25 @@ namespace ServiceStation.Controllers
         public ActionResult Edit(Clients client)
 
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                        _repo.Update(client);
-                         _unitOfWork.Commit();
-                         return RedirectToAction("Details/" + client.ClientsID);
-                }
-            }
-            catch (DataException)
-            {
-                //Log the error (add a variable name after DataException) 
-                throw;
-            }      
+            var _client = _repo.Get(client.ClientsID);
+                        if (TryUpdateModel(_client))
+                        {
+                           
+                            try
+                            {
+                                if (ModelState.IsValid)
+                                {
+                                    _repo.Update(_client);
+                                    _unitOfWork.Commit();
+                                    return RedirectToAction("Details/" + _client.ClientsID);
+                                }
+                            }
+                            catch (DataException)
+                            {
+                                //Log the error (add a variable name after DataException) 
+                                throw;
+                            }
+                        }
             return View(client);
         }
 

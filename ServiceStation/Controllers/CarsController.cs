@@ -13,23 +13,23 @@ namespace ServiceStation.Controllers
     public class CarsController : Controller
     {
 
-        ServiceContext db = new ServiceContext();
+ //       ServiceContext db = new ServiceContext();
 
         IUnitOfWork _unitOfWork;
 
-        Repository<Cars, int> _repo;
+        IRepository<Cars, int> _repo;
 
       /*  public CarsController()
         {
 
         }
         */
-         public CarsController(IUnitOfWork unitOfWork,Repository<Cars,int> repo)
+         public CarsController(IUnitOfWork unitOfWork,IRepository<Cars,int> repo)
           {
-         //     _unitOfWork = unitOfWork;
-        //      _repo = repo;
-              _unitOfWork = new UnitOfWork(db);
-              _repo = new Repository<Cars, int>(db);
+              _unitOfWork = unitOfWork;
+              _repo = repo;
+          //    _unitOfWork = new UnitOfWork(db);
+         //     _repo = new Repository<Cars, int>(db);
           }
          
 
@@ -64,19 +64,24 @@ namespace ServiceStation.Controllers
         [HttpPost]
         public ActionResult Edit(Cars car)
         {
-            try
+            var _car = _repo.Get(car.CarsID);
+            if (TryUpdateModel(_car))
             {
-                if (ModelState.IsValid)
+
+                try
                 {
-                    _repo.Update(car);
-                    _unitOfWork.Commit();
-                    return RedirectToAction("Details/" + car.ClientsID, "Clients");
+                    if (ModelState.IsValid)
+                    {
+                        _repo.Update(_car);
+                        _unitOfWork.Commit();
+                        return RedirectToAction("Details/" + _car.ClientsID, "Clients");
+                    }
                 }
-            }
-            catch (DataException)
-            {
-                //Log the error (add a variable name after DataException) 
-                throw;
+                catch (DataException)
+                {
+                    //Log the error (add a variable name after DataException) 
+                    throw;
+                }
             }
             return View(car);
         }
