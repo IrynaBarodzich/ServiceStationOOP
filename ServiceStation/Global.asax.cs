@@ -40,9 +40,9 @@ namespace ServiceStation
             var ninjectResolver = new NinjectDependencyResolver(kernel);
 
             DependencyResolver.SetResolver(ninjectResolver);
-          //  Bootstrapper.Initialise();
-     /*       AutofacConfig.ConfigureContainer();
-*/
+            AutoMapperConfig.Configure();
+
+
         }
     }
 }
