@@ -7,6 +7,8 @@ using ServiceStation.Models;
 using System.Data.Entity;
 using System.Data;
 using ServiceStation.Repositories;
+using AutoMapper;
+using ServiceStation.ViewModels;
 
 namespace ServiceStation.Controllers
 {
@@ -35,15 +37,15 @@ namespace ServiceStation.Controllers
 
         public ViewResult Details(int id)
         {
-            Cars car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
-            return View(car);
+            var model = Mapper.Map<Cars, CarsViewModel>(_unitOfWork.RepositoryFor<Cars, int>().Get(id));
+            return View(model);
         }
 
 
         public ActionResult Edit(int id)
         {
-            Cars car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
-            return View(car);
+            var model = Mapper.Map<Cars, CarsViewModel>(_unitOfWork.RepositoryFor<Cars, int>().Get(id));
+            return View(model);
         }
 
 
@@ -57,43 +59,46 @@ namespace ServiceStation.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(_unitOfWork.RepositoryFor<Cars, int>().Get(id));
+            var model = Mapper.Map<Cars, CarsViewModel>(_unitOfWork.RepositoryFor<Cars, int>().Get(id));
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(Cars car)
+        public ActionResult Edit(CarsViewModel model)
         {
-            var _car = _unitOfWork.RepositoryFor<Cars, int>().Get(car.CarsID);
-            if (TryUpdateModel(_car))
+            var car = _unitOfWork.RepositoryFor<Cars, int>().Get(model.CarsID);
+            Mapper.Map(model, car);
+            if (TryUpdateModel(car))
             {
-
                 try
                 {
                     if (ModelState.IsValid)
                     {
-                        _unitOfWork.RepositoryFor<Cars, int>().Update(_car);
+                        _unitOfWork.RepositoryFor<Cars, int>().Update(car);
                         _unitOfWork.Commit();
-                        return RedirectToAction("Details/" + _car.ClientsID, "Clients");
+                        return RedirectToAction("Details/" + car.ClientsID, "Clients");
                     }
                 }
                 catch (DataException)
                 {
-                    //Log the error (add a variable name after DataException) 
                     throw;
                 }
             }
-            return View(car);
+            return View(model);
         }
 
 
+
         [HttpPost]
-        public ActionResult Create(Cars car)
+        public ActionResult Create(CarsViewModel model)
         {
-            //   car.ClientsID = (int)Session["id"];
             try
             {
                 if (ModelState.IsValid)
                 {
+
+                    var car = Mapper.Map<CarsViewModel, Cars>(model);
+
                     _unitOfWork.RepositoryFor<Cars, int>().Create(car);
                     _unitOfWork.Commit();
                     return RedirectToAction("Details/" + car.ClientsID, "Clients");
@@ -101,28 +106,32 @@ namespace ServiceStation.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "Unable to save changes.");
+                throw;
             }
-            return View(car);
+            return View();
         }
 
 
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(CarsViewModel model)
         {
-            var car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
-            try
-            {
-                _unitOfWork.RepositoryFor<Cars, int>().Delete(id);
-                _unitOfWork.Commit();
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes.");
-
-            }
-            return RedirectToAction("Details/" + car.ClientsID, "Clients");
+            int id = model.CarsID;
+            var car = _unitOfWork.RepositoryFor<Cars, int>().Get(model.CarsID);
+            Mapper.Map(model, car);
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _unitOfWork.RepositoryFor<Orders, int>().Delete(car.CarsID);
+                        _unitOfWork.Commit();
+                    }
+                }
+                catch (DataException)
+                {
+                    throw;
+                }          
+            return RedirectToAction("Details/" + id, "Clients");
         }
 
 

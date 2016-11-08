@@ -118,9 +118,7 @@ namespace ServiceStation.Controllers
                 }
                 catch (DataException)
                 {
-                    //Log the error (add a variable name after DataException) 
-                    //  ModelState.AddModelError("", "Unable to save changes.");
-                    //  return RedirectToAction("Details/" + client.ClientsID);
+                    throw;
                 }
             }
             return View(model);
@@ -145,8 +143,7 @@ namespace ServiceStation.Controllers
             }
             catch (DataException)
             {
-                //Log the error (add a variable name after DataException) 
-                ModelState.AddModelError("", "Unable to save changes.");
+                throw;
             }
             return View();
         }

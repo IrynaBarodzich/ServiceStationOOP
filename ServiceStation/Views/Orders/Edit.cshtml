@@ -1,11 +1,11 @@
-﻿@model ServiceStation.Models.Orders
+﻿@model ServiceStation.ViewModels.OrdersViewModel
 @{
     ViewBag.Title = "Edit Order";
 }
         @using(Html.BeginForm("Edit", "Orders"))
         {
             
-<h2>Edit Car Information</h2> 
+<h2>Edit Order Information</h2> 
      @Html.HiddenFor(model => model.OrdersID) 
 <div class="editor-label"> 
     @Html.LabelFor(model => model.Date) 
