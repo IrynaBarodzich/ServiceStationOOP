@@ -150,6 +150,5 @@ D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceSt
 D:\Intetics\MVC\ServiceStation05.11.2016_edit\ServiceStation\obj\Debug\ServiceStation.pdb
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\EntityFramework.dll
 D:\Intetics\MVC\ServiceStation\ServiceStation\bin\EntityFramework.SqlServer.dll
-D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.201609112209222_InitialCreate.resources
+D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.InitialCreate.resources
 D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.csproj.GenerateResource.Cache
-D:\Intetics\MVC\ServiceStation\ServiceStation\obj\Debug\ServiceStation.Migrations.AfterAddingViewModels.resources

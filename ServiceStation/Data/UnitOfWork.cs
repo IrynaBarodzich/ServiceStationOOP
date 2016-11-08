@@ -17,7 +17,10 @@ namespace ServiceStation.Data
             _db = db;
         }
 
-
+        public IRepository<T, Tid> RepositoryFor<T, Tid>() where T : class
+        {
+            return new Repository<T,Tid>(_db);
+        }
 
         public void Commit()
         {

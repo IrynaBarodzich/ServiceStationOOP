@@ -29,13 +29,14 @@ namespace ServiceStation.Controllers
 
         IUnitOfWork _unitOfWork;
 
-        IRepository<Clients, int> _repo;
+
+    //    IRepository<Clients, int> _repo;
 
 
-       public ClientsController(UnitOfWork unitOfWork, IRepository<Clients, int> repo)
+       public ClientsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _repo = repo;
+      //      _repo = repo;
     //        _unitOfWork = new UnitOfWork(db);
     //        _repo = new Repository<Clients, int>(db);
         }
@@ -58,7 +59,7 @@ namespace ServiceStation.Controllers
                  .Where(c => c.FirstName == firstName)
                  .Where(c => c.LastName == lastName);*/
             var clients =
-    Mapper.Map<IEnumerable<Clients>, List<ClientsViewModel>>(_repo.GetList()
+    Mapper.Map<IEnumerable<Clients>, List<ClientsViewModel>>(_unitOfWork.RepositoryFor<Clients,int>().GetList()
     .Where(c => c.FirstName == firstName)
     .Where(c => c.LastName == lastName));
             return View(clients);
@@ -68,7 +69,7 @@ namespace ServiceStation.Controllers
 
         public ViewResult Details(int id)
         {
-            var model = Mapper.Map<Clients, ClientsViewModel>(_repo.Get(id));
+            var model = Mapper.Map<Clients, ClientsViewModel>(_unitOfWork.RepositoryFor<Clients, int>().Get(id));
             return View(model);
         }
 
@@ -77,7 +78,7 @@ namespace ServiceStation.Controllers
         {
 
           //  Clients client = _repo.Get(id);
-            var model = Mapper.Map<Clients, ClientsViewModel>(_repo.Get(id));
+            var model = Mapper.Map<Clients, ClientsViewModel>(_unitOfWork.RepositoryFor<Clients, int>().Get(id));
             TempData["firstName"] = model.FirstName;
             TempData["lastName"] = model.LastName;
             return View(model);
@@ -94,23 +95,33 @@ namespace ServiceStation.Controllers
         public ActionResult Edit(ClientsViewModel model)
 
         {
-            try
+            var client = _unitOfWork.RepositoryFor<Clients, int>().Get(model.ClientsID);
+            Mapper.Map(model, client);
+            if (TryUpdateModel(client))
             {
-                if (ModelState.IsValid)
+                try
                 {
-                   var client = _repo.Get(model.ClientsID);
-                   Mapper.Map(model, client);
+                    if (ModelState.IsValid)
+                    {
+                      /*  int newId = model.ClientsID;
+                        IEnumerable<Cars> cars = _unitOfWork.RepositoryFor<Cars, int>().GetList().Where(c => c.ClientsID == newId);
+                        foreach (var car in cars)
+                        {
+                            db.Entry(car).State = EntityState.Modified;
+                        }*/
 
-                    _repo.Update(client);
-                    _unitOfWork.Commit();
-                    return RedirectToAction("Details/" + model.ClientsID);
+                        _unitOfWork.RepositoryFor<Clients, int>().Update(client);
+
+                        _unitOfWork.Commit();
+                        return RedirectToAction("Details/" + model.ClientsID);
+                    }
                 }
-            }
-            catch (DataException)
-            {
-                //Log the error (add a variable name after DataException) 
-                //  ModelState.AddModelError("", "Unable to save changes.");
-                //  return RedirectToAction("Details/" + client.ClientsID);
+                catch (DataException)
+                {
+                    //Log the error (add a variable name after DataException) 
+                    //  ModelState.AddModelError("", "Unable to save changes.");
+                    //  return RedirectToAction("Details/" + client.ClientsID);
+                }
             }
             return View(model);
         }
@@ -127,7 +138,7 @@ namespace ServiceStation.Controllers
 
                    var client = Mapper.Map<ClientsViewModel, Clients>(model);
 
-                    _repo.Create(client);
+                   _unitOfWork.RepositoryFor<Clients, int>().Create(client);
                     _unitOfWork.Commit();
                     return RedirectToAction("Details/" + client.ClientsID, "Clients");
                 }

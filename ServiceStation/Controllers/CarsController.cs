@@ -17,17 +17,16 @@ namespace ServiceStation.Controllers
 
         IUnitOfWork _unitOfWork;
 
-        IRepository<Cars, int> _repo;
+    //    IRepository<Cars, int> _repo;
 
       /*  public CarsController()
         {
 
         }
         */
-         public CarsController(IUnitOfWork unitOfWork,IRepository<Cars,int> repo)
+         public CarsController(IUnitOfWork unitOfWork)
           {
               _unitOfWork = unitOfWork;
-              _repo = repo;
           //    _unitOfWork = new UnitOfWork(db);
          //     _repo = new Repository<Cars, int>(db);
           }
@@ -36,14 +35,14 @@ namespace ServiceStation.Controllers
 
         public ViewResult Details(int id)
         {
-            Cars car = _repo.Get(id);
+            Cars car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
             return View(car);
         }
 
 
         public ActionResult Edit(int id)
         {
-            Cars car = _repo.Get(id);
+            Cars car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
             return View(car);
         }
 
@@ -58,13 +57,13 @@ namespace ServiceStation.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(_repo.Get(id));
+            return View(_unitOfWork.RepositoryFor<Cars, int>().Get(id));
         }
 
         [HttpPost]
         public ActionResult Edit(Cars car)
         {
-            var _car = _repo.Get(car.CarsID);
+            var _car = _unitOfWork.RepositoryFor<Cars, int>().Get(car.CarsID);
             if (TryUpdateModel(_car))
             {
 
@@ -72,7 +71,7 @@ namespace ServiceStation.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        _repo.Update(_car);
+                        _unitOfWork.RepositoryFor<Cars, int>().Update(_car);
                         _unitOfWork.Commit();
                         return RedirectToAction("Details/" + _car.ClientsID, "Clients");
                     }
@@ -95,7 +94,7 @@ namespace ServiceStation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _repo.Create(car);
+                    _unitOfWork.RepositoryFor<Cars, int>().Create(car);
                     _unitOfWork.Commit();
                     return RedirectToAction("Details/" + car.ClientsID, "Clients");
                 }
@@ -112,10 +111,10 @@ namespace ServiceStation.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            var car = _repo.Get(id);
+            var car = _unitOfWork.RepositoryFor<Cars, int>().Get(id);
             try
             {
-                _repo.Delete(id);
+                _unitOfWork.RepositoryFor<Cars, int>().Delete(id);
                 _unitOfWork.Commit();
             }
             catch (DataException)

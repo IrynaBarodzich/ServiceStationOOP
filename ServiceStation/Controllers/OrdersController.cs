@@ -16,7 +16,7 @@ namespace ServiceStation.Controllers
 
         IUnitOfWork _unitOfWork;
 
-        Repository<Orders, int> _repo;
+     //   Repository<Orders, int> _repo;
 
      //   ServiceContext db = new ServiceContext();
 
@@ -27,17 +27,17 @@ namespace ServiceStation.Controllers
 
 
 
-           public OrdersController(IUnitOfWork unitOfWork,Repository<Orders,int> repo)
+           public OrdersController(IUnitOfWork unitOfWork)
            {
                _unitOfWork = unitOfWork;
-               _repo = repo;
+        //       _repo = repo;
            }
 
 
 
         public ViewResult Edit(int id)
         {
-            Orders order = _repo.Get(id);
+            Orders order = _unitOfWork.RepositoryFor<Orders, int>().Get(id);
             return View(order);
         }
 
@@ -57,13 +57,13 @@ namespace ServiceStation.Controllers
             {
                 ViewBag.ErrorMessage = "Unable to save changes.";
             }
-            return View(_repo.Get(id));
+            return View(_unitOfWork.RepositoryFor<Orders, int>().Get(id));
         }
 
         [HttpPost]
         public ActionResult Edit(Orders order)
         {
-            var _order = _repo.Get(order.OrdersID);
+            var _order = _unitOfWork.RepositoryFor<Orders, int>().Get(order.OrdersID);
             if (TryUpdateModel(_order))
             {
 
@@ -71,7 +71,7 @@ namespace ServiceStation.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        _repo.Update(_order);
+                        _unitOfWork.RepositoryFor<Orders, int>().Update(_order);
                         _unitOfWork.Commit();
                         return RedirectToAction("Details/" + _order.CarsID, "Cars");
                     }
@@ -93,7 +93,7 @@ namespace ServiceStation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _repo.Create(order);
+                    _unitOfWork.RepositoryFor<Orders, int>().Create(order);
                     _unitOfWork.Commit();
                     return RedirectToAction("Details/" + order.CarsID, "Cars");
                 }
@@ -110,10 +110,10 @@ namespace ServiceStation.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Orders order = _repo.Get(id);
+            Orders order = _unitOfWork.RepositoryFor<Orders, int>().Get(id);
             try
             {
-                _repo.Delete(id);
+                _unitOfWork.RepositoryFor<Orders, int>().Delete(id);
                 _unitOfWork.Commit();
             }
             catch (DataException)

@@ -7,13 +7,13 @@ namespace ServiceStation.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AfterAddingViewModels : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AfterAddingViewModels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611071816378_AfterAddingViewModels"; }
+            get { return "201611082005352_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

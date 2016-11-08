@@ -17,6 +17,6 @@ namespace ServiceStation.ViewModels
         [Required]
         public string Status { get; set; }
         public int CarsID { get; set; }
-        public virtual Cars Cars { get; set; } 
+        public Cars Cars { get; set; } 
     }
 }

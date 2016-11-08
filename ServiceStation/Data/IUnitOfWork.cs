@@ -9,6 +9,7 @@ namespace ServiceStation.Data
 {
     public interface IUnitOfWork : IDisposable
     {
+        IRepository<T, Tid> RepositoryFor<T, Tid>() where T : class;
         void Commit();
     }
 }

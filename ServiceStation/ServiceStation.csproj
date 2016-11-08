@@ -153,11 +153,9 @@
     <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\AutomapperExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapperNinjectModule.cs" />
-    <Compile Include="Migrations\201609112209222_InitialCreate.cs" />
-    <Compile Include="Migrations\201609112209222_InitialCreate.Designer.cs" />
-    <Compile Include="Migrations\201611071816378_AfterAddingViewModels.cs" />
-    <Compile Include="Migrations\201611071816378_AfterAddingViewModels.Designer.cs">
-      <DependentUpon>201611071816378_AfterAddingViewModels.cs</DependentUpon>
+    <Compile Include="Migrations\201611082005352_InitialCreate.cs" />
+    <Compile Include="Migrations\201611082005352_InitialCreate.Designer.cs">
+      <DependentUpon>201611082005352_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Profiles\CarsMapping.cs" />
@@ -285,9 +283,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609112209222_InitialCreate.resx" />
-    <EmbeddedResource Include="Migrations\201611071816378_AfterAddingViewModels.resx">
-      <DependentUpon>201611071816378_AfterAddingViewModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611082005352_InitialCreate.resx">
+      <DependentUpon>201611082005352_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

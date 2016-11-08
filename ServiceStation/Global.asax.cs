@@ -26,7 +26,7 @@ namespace ServiceStation
 
 
 
-      //     Database.SetInitializer<ServiceContext>(new ServiceInitializer());
+         Database.SetInitializer<ServiceContext>(new ServiceInitializer());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

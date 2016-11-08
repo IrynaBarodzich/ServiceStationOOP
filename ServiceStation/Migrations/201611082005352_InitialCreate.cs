@@ -15,7 +15,7 @@ namespace ServiceStation.Migrations
                         Make = c.String(nullable: false, maxLength: 50),
                         Model = c.String(nullable: false, maxLength: 50),
                         Year = c.Int(nullable: false),
-                        VIN = c.String(nullable: false, maxLength: 17),
+                        VIN = c.String(nullable: false, maxLength: 50),
                         ClientsID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CarsID)
