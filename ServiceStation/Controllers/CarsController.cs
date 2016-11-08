@@ -90,14 +90,14 @@ namespace ServiceStation.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(CarsViewModel model)
+        public ActionResult Create(CarsViewModel mod)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    var car = Mapper.Map<CarsViewModel, Cars>(model);
+                    var car = Mapper.Map<CarsViewModel, Cars>(mod);
 
                     _unitOfWork.RepositoryFor<Cars, int>().Create(car);
                     _unitOfWork.Commit();
