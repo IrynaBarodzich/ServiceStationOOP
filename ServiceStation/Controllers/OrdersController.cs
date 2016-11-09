@@ -71,7 +71,7 @@ namespace ServiceStation.Controllers
                     {
                         _unitOfWork.RepositoryFor<Orders, int>().Update(order);
                         _unitOfWork.Commit();
-                        return RedirectToAction("Details/" + order.CarsID, "Cars");
+                        return RedirectToAction("Details/" + model.CarsID, "Cars");
                     }
                 }
                 catch (DataException)
@@ -110,10 +110,9 @@ namespace ServiceStation.Controllers
         [HttpPost]
         public ActionResult Delete(OrdersViewModel model)
           {
-              int id = model.CarsID;
-              var order = _unitOfWork.RepositoryFor<Orders, int>().Get(model.OrdersID);
+              var order = Mapper.Map<OrdersViewModel, Orders>(model); 
+            //var order = _unitOfWork.RepositoryFor<Orders, int>().Get(model.OrdersID);
               Mapper.Map(model, order);
-            Mapper.Map(model, order);
                 try
                 {
                     if (ModelState.IsValid)
@@ -126,7 +125,7 @@ namespace ServiceStation.Controllers
                 {
                     throw;
                 }
-            return RedirectToAction("Details/" + id, "Cars");
+            return RedirectToAction("Details/" + 1, "Cars");
         }
 
 

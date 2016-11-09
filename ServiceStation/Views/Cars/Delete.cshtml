@@ -24,10 +24,23 @@
 </tr>
 
     </table>
+    @Html.HiddenFor(model => model.ClientsID) 
     
 
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm()) 
+    {
+    @Html.HiddenFor(model => model.CarsID) 
+
+    @Html.HiddenFor(model => model.Make) 
+
+    @Html.HiddenFor(model => model.Model) 
+ 
+    @Html.HiddenFor(model => model.Year)    
+
+    @Html.HiddenFor(model => model.VIN) 
+        
+    @Html.HiddenFor(model => model.ClientsID) 
     
 
         <p>
