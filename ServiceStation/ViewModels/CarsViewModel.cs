@@ -24,7 +24,7 @@ namespace ServiceStation.ViewModels
         [StringLength(17, MinimumLength = 11, ErrorMessage = "Enter a valid VIN")]
         public string VIN { get; set; }
         public int ClientsID { get; set; }
-        public ICollection<Orders> Orders { get; set; }
-        public Clients Clients { get; set; }
+        public ICollection<OrdersViewModel> Orders { get; set; }
+        public ClientsViewModel Clients { get; set; }
     }
 }

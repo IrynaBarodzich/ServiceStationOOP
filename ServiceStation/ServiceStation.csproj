@@ -151,8 +151,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\AutomapperExtensions.cs" />
-    <Compile Include="Infrastructure\AutoMapperNinjectModule.cs" />
     <Compile Include="Migrations\201611082005352_InitialCreate.cs" />
     <Compile Include="Migrations\201611082005352_InitialCreate.Designer.cs">
       <DependentUpon>201611082005352_InitialCreate.cs</DependentUpon>

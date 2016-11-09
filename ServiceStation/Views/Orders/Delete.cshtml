@@ -31,6 +31,16 @@
 
 
     @using (Html.BeginForm()) {
+        
+            @Html.HiddenFor(model => model.OrdersID) 
+
+    @Html.HiddenFor(model => model.Date) 
+
+    @Html.HiddenFor(model => model.Amount) 
+ 
+    @Html.HiddenFor(model => model.Status)    
+
+    @Html.HiddenFor(model => model.CarsID) 
     
 
         

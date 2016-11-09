@@ -111,7 +111,6 @@ namespace ServiceStation.Controllers
         public ActionResult Delete(OrdersViewModel model)
           {
               var order = Mapper.Map<OrdersViewModel, Orders>(model); 
-            //var order = _unitOfWork.RepositoryFor<Orders, int>().Get(model.OrdersID);
               Mapper.Map(model, order);
                 try
                 {
@@ -125,7 +124,7 @@ namespace ServiceStation.Controllers
                 {
                     throw;
                 }
-            return RedirectToAction("Details/" + 1, "Cars");
+            return RedirectToAction("Details/" + model.CarsID, "Cars");
         }
 
 

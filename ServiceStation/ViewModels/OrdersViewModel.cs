@@ -19,6 +19,6 @@ namespace ServiceStation.ViewModels
         [Required(ErrorMessage = "Select Status")]
         public string Status { get; set; }
         public int CarsID { get; set; }
-        public virtual Cars Cars { get; set; }
+        public virtual CarsViewModel Cars { get; set; }
     }
 }
