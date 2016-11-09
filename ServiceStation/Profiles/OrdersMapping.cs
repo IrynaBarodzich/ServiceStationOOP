@@ -16,7 +16,7 @@ namespace ServiceStation.Profiles
         {
 
             Mapper.CreateMap<Orders, OrdersViewModel>();
-            Mapper.CreateMap<OrdersViewModel, Orders>();
+            Mapper.CreateMap<OrdersViewModel, Orders>().ForMember(x => x.Cars, y => y.Ignore());
         }
     }
 }

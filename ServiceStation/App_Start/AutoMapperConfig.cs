@@ -17,7 +17,6 @@ namespace ServiceStation
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile(new ClientsMapping());
-                cfg.AddProfile(new ClientsViewMapping());
                 cfg.AddProfile(new CarsMapping());
                 cfg.AddProfile(new OrdersMapping());
             });

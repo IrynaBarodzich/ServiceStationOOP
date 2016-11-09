@@ -15,6 +15,7 @@ namespace ServiceStation.Profiles
         protected override void Configure()
         {
             Mapper.CreateMap<Clients, ClientsViewModel>();
+            Mapper.CreateMap<ClientsViewModel, Clients>().ForMember(x => x.Cars, y => y.Ignore());
         }
     }
 }
