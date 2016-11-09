@@ -103,17 +103,11 @@ namespace ServiceStation.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                      /*  int newId = model.ClientsID;
-                        IEnumerable<Cars> cars = _unitOfWork.RepositoryFor<Cars, int>().GetList().Where(c => c.ClientsID == newId);
-                        foreach (var car in cars)
-                        {
-                            db.Entry(car).State = EntityState.Modified;
-                        }*/
-
                         _unitOfWork.RepositoryFor<Clients, int>().Update(client);
 
                         _unitOfWork.Commit();
-                        return RedirectToAction("Details/" + model.ClientsID);
+                  //      return RedirectToAction("Details/" + model.ClientsID);
+                        return RedirectToRoute(new { controller = "Clients", action = "Details", id = model.ClientsID });
                     }
                 }
                 catch (DataException)
@@ -138,7 +132,8 @@ namespace ServiceStation.Controllers
 
                    _unitOfWork.RepositoryFor<Clients, int>().Create(client);
                     _unitOfWork.Commit();
-                    return RedirectToAction("Details/" + client.ClientsID, "Clients");
+             //       return RedirectToAction("Details/" + client.ClientsID, "Clients");
+                    return RedirectToRoute(new { controller = "Clients", action = "Details", id = client.ClientsID });
                 }
             }
             catch (DataException)

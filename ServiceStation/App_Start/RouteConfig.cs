@@ -18,6 +18,12 @@ namespace ServiceStation
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+            name: null, // Route name
+            url: "{controller}/{action}/{id}", // URL with parameters
+            defaults: new { controller = "Home", action = "Index" }
+        );
         }
     }
 }

@@ -76,7 +76,8 @@ namespace ServiceStation.Controllers
                     {
                         _unitOfWork.RepositoryFor<Cars, int>().Update(car);
                         _unitOfWork.Commit();
-                        return RedirectToAction("Details/" + mod.ClientsID, "Clients");
+                 //       return RedirectToAction("Details/" + mod.ClientsID, "Clients");
+                        return RedirectToRoute(new {controller = "Clients", action = "Details", id = mod.ClientsID});
                     }
                 }
                 catch (DataException)
@@ -101,7 +102,7 @@ namespace ServiceStation.Controllers
 
                     _unitOfWork.RepositoryFor<Cars, int>().Create(car);
                     _unitOfWork.Commit();
-                    return RedirectToAction("Details/" + mod.ClientsID, "Clients");
+                    return RedirectToRoute(new { controller = "Clients", action = "Details", id = mod.ClientsID });
                 }
             }
             catch (DataException)
@@ -130,7 +131,7 @@ namespace ServiceStation.Controllers
                 {
                     throw;
                 }
-                return RedirectToAction("Details/" + mod.ClientsID, "Clients");
+                return RedirectToRoute(new { controller = "Clients", action = "Details", id = mod.ClientsID });
         }
 
 
